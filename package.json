@@ -1,0 +1,14 @@
+{
+  "name": "design-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "new": "node scripts/new.js"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/shared/base.css" />
+  <link rel="stylesheet" href="/home.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">design-lab<span class="caret">_</span></a>
+    <div class="meta">
+      <span class="hide-sm">prototype · v0.1</span>
+      <span data-clock>--:--:--</span>
+      <button class="toggle" data-grid aria-pressed="false">grille <kbd>G</kbd></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="crop crop--tl" aria-hidden="true"></span>
+      <span class="crop crop--tr" aria-hidden="true"></span>
+      <span class="crop crop--bl" aria-hidden="true"></span>
+      <span class="crop crop--br" aria-hidden="true"></span>
+      <h1>Un labo pour tester des idées <em>avant</em> qu’elles deviennent propres.</h1>
+      <p class="lede">Expérimentations visuelles, brouillons assumés. Rien ici n’est fini.</p>
+    </section>
+
+    <section class="index" aria-label="Expérimentations">
+      <div class="row row--head" aria-hidden="true">
+        <span>n°</span><span>nom</span><span class="hide-sm">technique</span><span>état</span>
+      </div>
+      <ol>
+        <li style="--i:0">
+          <a class="row" href="/experiments/hand-drawn/">
+            <span class="num">001</span>
+            <span class="name">hand-drawn <small>f**k IA</small></span>
+            <span class="tech hide-sm">css · svg filters</span>
+            <span class="state">en cours <span class="arrow" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <li style="--i:1">
+          <a class="row" href="/experiments/old-tv/">
+            <span class="num">002</span>
+            <span class="name">old-tv</span>
+            <span class="tech hide-sm">css · canvas</span>
+            <span class="state">en cours <span class="arrow" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <!-- Dossiers créés, pas encore commencés -->
+        <li style="--i:2"><div class="row is-empty"><span class="num">003</span><span class="name">brutalist</span><span class="tech hide-sm">—</span><span class="state">à venir</span></div></li>
+        <li style="--i:3"><div class="row is-empty"><span class="num">004</span><span class="name">editorial</span><span class="tech hide-sm">—</span><span class="state">à venir</span></div></li>
+        <li style="--i:4"><div class="row is-empty"><span class="num">005</span><span class="name">liquid</span><span class="tech hide-sm">—</span><span class="state">à venir</span></div></li>
+        <li style="--i:5"><div class="row is-empty"><span class="num">006</span><span class="name">terminal</span><span class="tech hide-sm">—</span><span class="state">à venir</span></div></li>
+        <!-- <li><a class="row" href="/experiments/nom/">…</a></li> -->
+      </ol>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <button class="cmd" data-copy="pnpm new ">
+      <span class="prompt">$</span> pnpm new &lt;nom&gt;
+      <span class="copied" data-copied aria-live="polite"></span>
+    </button>
+    <span class="coords hide-sm" data-coords>x 0000 · y 0000</span>
+  </footer>
+
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <script type="module" src="/home.js"></script>
+</body>
+</html>

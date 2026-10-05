@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Old TV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/shared/base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="room" data-room>
+    <div class="tv" data-tv data-power="off">
+      <!-- Écran CSS glissé derrière l'ouverture du PNG (mesurée : x 268–1373, y 272–1080 sur 1908 × 1505) -->
+      <div class="screen">
+        <!-- .crt porte l'allumage / extinction, .picture le scintillement -->
+        <div class="crt">
+          <div class="picture">
+            <section class="channel channel--nosignal is-current" data-channel data-glow="rgb(60 80 255 / .22)">
+              <span class="bars bars--top" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h1>NO SIGNAL</h1>
+              <span class="bars bars--mid" aria-hidden="true"><i></i><i></i><i></i></span>
+              <p class="blink">▸ tourne le bouton du haut</p>
+            </section>
+
+            <!-- Chaînes vidéo : l'iframe YouTube est créée à l'arrivée sur la chaîne (main.js) -->
+            <section class="channel channel--video" data-channel data-video="hJeS-RT0Ji8" style="--ratio: 4 / 3" data-glow="rgb(255 140 40 / .22)" aria-label="Dragon Ball Z, générique arabe"></section>
+            <section class="channel channel--video" data-channel data-video="tuBFkG43Qoc" style="--ratio: 16 / 9" data-glow="rgb(255 60 140 / .2)" aria-label="MED TIGER"></section>
+            <section class="channel channel--video" data-channel data-video="fMlqPiEQFcA" style="--ratio: 16 / 9" data-glow="rgb(40 190 230 / .2)" aria-label="Choufli Hall, Bou T'bila"></section>
+            <section class="channel channel--video" data-channel data-video="zf6LCSzKNCI" style="--ratio: 16 / 9" data-glow="rgb(255 120 30 / .22)" aria-label="Naruto vs Kakashi, Rasengan vs Rasenshuriken"></section>
+            <section class="channel channel--video" data-channel data-video="PD6WOxBL_Q4" style="--ratio: 16 / 9" data-glow="rgb(200 40 40 / .2)" aria-label="Shadow of Rome, triple fracture"></section>
+            <section class="channel channel--video" data-channel data-video="-ydR2wL8SpE" style="--ratio: 4 / 3" data-glow="rgb(60 200 120 / .2)" aria-label="Jackie Chan Stuntmaster, Chinatown, boss"></section>
+            <!-- data-live : direct 24/7, tourne en continu en muet même quand on n'est pas dessus -->
+            <section class="channel channel--video" data-channel data-video="SR_TidtqZh4" data-live style="--ratio: 4 / 3" data-glow="rgb(230 60 50 / .22)" aria-label="Choufli Hall en direct, Watania Drama"></section>
+
+            <canvas class="static" data-static aria-hidden="true"></canvas>
+            <span class="tracking" aria-hidden="true"></span>
+
+            <div class="osd" aria-hidden="true">
+              <span class="osd-play">▶ PLAY <span data-osd-sound>MUTE</span></span>
+              <span class="osd-ch" data-osd-ch>CH 00</span>
+              <span class="osd-tape" data-osd-tape>TAPE</span>
+              <span class="osd-date" data-osd-date></span>
+            </div>
+          </div>
+        </div>
+        <span class="glass" aria-hidden="true"></span>
+      </div>
+
+      <img class="frame" src="./tv-frame.png" alt="" width="1908" height="1505" />
+
+      <!-- Zones cliquables posées sur les boutons de la photo (coordonnées en px de l'image) -->
+      <button class="hit hit--knob" style="--x:1608; --y:246; --w:144; --h:144" data-next data-turn aria-label="Chaîne suivante"></button>
+      <button class="hit hit--knob" style="--x:1611; --y:506; --w:144; --h:144" data-prev data-turn aria-label="Chaîne précédente"></button>
+      <button class="hit hit--push" style="--x:1582; --y:752; --w:76; --h:32" data-sound aria-pressed="false" aria-label="Activer le son"></button>
+      <button class="hit hit--knob" style="--x:1721; --y:734; --w:72; --h:72" data-power-toggle aria-pressed="false" aria-label="Allumer ou éteindre"></button>
+      <button class="hit hit--push" style="--x:909; --y:1288; --w:90; --h:32" data-channel-key="1" aria-label="Chaîne 01"></button>
+      <button class="hit hit--push" style="--x:1049; --y:1288; --w:90; --h:32" data-channel-key="2" aria-label="Chaîne 02"></button>
+      <button class="hit hit--push" style="--x:1192; --y:1288; --w:90; --h:32" data-channel-key="3" aria-label="Chaîne 03"></button>
+      <button class="hit hit--push" style="--x:1333; --y:1288; --w:90; --h:32" data-channel-key="4" aria-label="Chaîne 04"></button>
+    </div>
+
+    <p class="hint">← → zapper · 0–7 chaîne directe · M son · P allumer / éteindre</p>
+  </main>
+
+  <a class="back" href="/">← lab</a>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

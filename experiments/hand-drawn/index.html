@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fait main</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Caveat+Brush&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/shared/base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Filtres qui font trembler les traits : bruit + déplacement. Deux seeds = deux passages de stylo. -->
+  <svg id="filters" width="0" height="0" aria-hidden="true" style="position:absolute">
+    <filter id="rough-a">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" />
+      <feDisplacementMap in="SourceGraphic" scale="5" />
+    </filter>
+    <filter id="rough-b">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="17" />
+      <feDisplacementMap in="SourceGraphic" scale="4" />
+    </filter>
+  </svg>
+
+  <!-- Tracés relevés sur le croquis original (1440 × 1024) -->
+  <svg class="sheet" viewBox="0 0 1440 1024" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="sheet-title" aria-describedby="concept">
+    <title id="sheet-title">Aladin akkari, un bonhomme qui fait coucou</title>
+
+    <g class="btn" role="button" tabindex="0" aria-label="Button" data-wave>
+      <path style="--d:0" pathLength="1" d="M1142 86 C1200 84 1280 86 1330 88 M1294 83 C1315 82 1335 84 1342 88 C1356 96 1356 116 1338 130 C1300 148 1250 168 1212 170 C1180 172 1158 160 1148 140 C1142 125 1140 105 1142 86" />
+      <text x="1246" y="134">HEY</text>
+    </g>
+    <text class="name" x="720" y="508">Aladin akkari</text>
+    <path style="--d:1" pathLength="1" d="M562 544 L1077 513" />
+    <path style="--d:2" pathLength="1" d="M680 551 C705 556 725 561 760 562 L883 563" />
+
+    <!-- Le concept, dans une box au même trait que le croquis (bords qui dépassent aux coins) -->
+    <path style="--d:1" pathLength="1" d="M62 312 C180 306 350 309 496 303 M490 298 C496 400 498 520 492 642 M504 638 C360 644 200 648 66 642 M72 652 C66 520 60 420 66 302" />
+    <!-- Flèches qui pointent vers la box -->
+    <path style="--d:1.4" pathLength="1" d="M150 190 C140 230 190 260 228 288" />
+    <path style="--d:1.9" pathLength="1" d="M210 286 L228 288 L220 272" />
+    <path style="--d:1.6" pathLength="1" d="M30 790 C40 730 80 700 112 668" />
+    <path style="--d:2.1" pathLength="1" d="M107 685 L112 668 L95 673" />
+    <path style="--d:1.8" pathLength="1" d="M470 800 C520 760 470 720 430 668" />
+    <path style="--d:2.3" pathLength="1" d="M446 675 L430 668 L433 686" />
+    <text class="concept" id="concept" x="96" y="372">
+      <tspan class="concept-title">Juste une idée.</tspan>
+      <tspan x="96" dy="52">Dans un monde avec des designs IA,</tspan>
+      <tspan x="96" dy="32">j’ai voulu créer une place</tspan>
+      <tspan x="96" dy="32">où rien n’est parfait</tspan>
+      <tspan x="96" dy="32">et où tout est fait à la main.</tspan>
+    </text>
+
+    <g class="figure">
+      <g class="arm">
+        <path style="--d:3" pathLength="1" d="M892 613 C900 680 912 760 918 835 C920 845 930 848 960 858 C1010 875 1060 882 1100 880" />
+        <path style="--d:4" pathLength="1" d="M873 636 L902 664" />
+      </g>
+      <path style="--d:5" pathLength="1" d="M1058 805 C1030 800 1000 780 996 750 C994 725 998 718 1010 708 L1118 643 C1125 645 1150 668 1182 692 C1192 712 1192 740 1180 770 C1170 790 1162 805 1135 818 C1110 824 1075 826 1052 822 C1046 820 1042 816 1040 812" />
+      <path style="--d:6" pathLength="1" d="M1075 690 L1075 718 M1119 688 L1119 716" />
+      <path style="--d:7" pathLength="1" d="M1056 770 C1075 771 1095 772 1112 772 C1140 770 1162 755 1166 730" />
+      <path style="--d:8" pathLength="1" data-body d="M1109 829 C1108 845 1108 860 1106 878 L1102 1005" />
+      <path style="--d:9" pathLength="1" d="M1110 870 L1245 870 C1250 880 1250 895 1255 912 C1258 920 1262 926 1268 930" />
+    </g>
+  </svg>
+
+  <div class="kit">
+    <main>
+      <header class="intro">
+        <h1>
+          Fait main.
+          <svg class="scribble" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M4 14 C 60 6, 120 20, 180 10 S 270 8, 296 16 M 20 19 C 90 12, 170 22, 280 12" />
+          </svg>
+        </h1>
+        <p>Pas de grille parfaite, pas de dégradé violet. Juste un <span class="marker">stylo</span> et un peu de <span class="circled">mauvaise foi</span>.</p>
+        <button class="sketch sketch-btn" data-boil aria-pressed="false">Faire trembler</button>
+      </header>
+
+      <section class="grid">
+        <article class="sketch" style="--tilt:-1deg">
+          <h2>Box simple</h2>
+          <p>Deux traits qui ne se superposent jamais vraiment. Comme quand tu repasses au feutre.</p>
+        </article>
+
+        <article class="sketch sketch--hatch" style="--tilt:.8deg">
+          <h2>Ombre hachurée</h2>
+          <p>L’ombre portée, version crayon de papier pendant un cours chiant.</p>
+        </article>
+
+        <article class="sketch sketch--note" style="--tilt:2deg">
+          <span class="tape" aria-hidden="true"></span>
+          <h2>Post-it</h2>
+          <p>À faire : arrêter de demander à une IA de faire le design.</p>
+        </article>
+
+        <article class="sketch sketch--dashed" style="--tilt:-.4deg">
+          <h2>Pointillés</h2>
+          <p>Découper ici. Ou pas.</p>
+          <svg class="arrow" viewBox="0 0 120 60" aria-hidden="true">
+            <path d="M6 50 C 30 10, 70 6, 104 22" />
+            <path d="M92 10 L 106 23 L 88 30" />
+          </svg>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Calque de dessin au crayon, à la taille de toute la page -->
+  <canvas class="crayon-layer" data-crayon aria-hidden="true"></canvas>
+  <button class="sketch sketch-btn eraser" data-erase>gomme</button>
+
+  <a class="back" href="/">← lab</a>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

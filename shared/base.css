@@ -1,0 +1,13 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body { min-height: 100dvh; -webkit-font-smoothing: antialiased; }
+img, svg, canvas { display: block; max-width: 100%; }
+.back {
+  position: fixed; left: 16px; bottom: 16px; z-index: 100;
+  font: 500 12px/1 ui-monospace, monospace; letter-spacing: .04em;
+  padding: 8px 12px; border-radius: 999px; text-decoration: none;
+  color: #fff; background: rgb(0 0 0 / .7); backdrop-filter: blur(8px);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
