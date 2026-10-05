@@ -134,7 +134,8 @@ const zapTo = (index) => {
     switching = false
   }, SWITCH_MS)
 }
-const zap = (direction) => zapTo((current + direction + channels.length) % channels.length)
+const wrap = (index) => ((index % channels.length) + channels.length) % channels.length
+const zap = (direction) => zapTo(wrap(current + direction))
 
 const powerOn = () => {
   isOn = true
@@ -168,17 +169,67 @@ const toggleSound = () => {
   syncVideo(channels[current])
 }
 
-// Les molettes tournent d'un cran à chaque clic, même télé éteinte (comme une vraie)
-const turn = (knob, degrees) => {
-  const angle = (Number(knob.dataset.angle) || 0) + degrees
+// Molettes : un cran = 30° = une chaîne. Elles tournent même télé éteinte (comme une vraie).
+const NOTCH = 30
+const getAngle = (knob) => Number(knob.dataset.angle) || 0
+const setAngle = (knob, angle) => {
   knob.dataset.angle = angle
   knob.style.setProperty('--rot', `${angle}deg`)
 }
-const next = () => { turn(nextKnob, 30); zap(1) }
-const prev = () => { turn(prevKnob, -30); zap(-1) }
+const next = () => { setAngle(nextKnob, getAngle(nextKnob) + NOTCH); zap(1) }
+const prev = () => { setAngle(prevKnob, getAngle(prevKnob) - NOTCH); zap(-1) }
 
-nextKnob.addEventListener('click', next)
-prevKnob.addEventListener('click', prev)
+// Angle du pointeur autour du centre de la molette (le centre de la zone = l'axe mesuré sur la photo)
+const pointerAngle = (knob, e) => {
+  const r = knob.getBoundingClientRect()
+  return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI
+}
+
+// Glisser autour de la molette la fait tourner : sens horaire = chaîne suivante, un cran franchi = un zapping.
+// Un simple clic reste possible (et au clavier, Entrée / Espace).
+const makeDial = (knob, onClick) => {
+  let drag = null
+  knob.addEventListener('pointerdown', (e) => {
+    knob.setPointerCapture(e.pointerId)
+    drag = { last: pointerAngle(knob, e), total: 0, start: getAngle(knob), channel: current, moved: false }
+    knob.classList.add('is-dragging')
+  })
+  knob.addEventListener('pointermove', (e) => {
+    if (!drag) return
+    const angle = pointerAngle(knob, e)
+    let delta = angle - drag.last
+    if (delta > 180) delta -= 360
+    if (delta < -180) delta += 360
+    drag.last = angle
+    drag.total += delta
+    if (Math.abs(drag.total) > 6) drag.moved = true
+    setAngle(knob, drag.start + drag.total)
+    if (drag.moved) zapTo(wrap(drag.channel + Math.round(drag.total / NOTCH)))
+  })
+  const release = () => {
+    if (!drag) return
+    knob.classList.remove('is-dragging')
+    const notches = Math.round(drag.total / NOTCH)
+    setAngle(knob, drag.start + notches * NOTCH) // se cale sur le cran le plus proche
+    if (drag.moved) {
+      const target = wrap(drag.channel + notches)
+      setTimeout(() => zapTo(target), SWITCH_MS) // rattrape un cran ignoré pendant un zapping en cours
+      knob.dataset.dragged = 'true'
+    }
+    drag = null
+  }
+  knob.addEventListener('pointerup', release)
+  knob.addEventListener('pointercancel', release)
+  knob.addEventListener('click', () => {
+    if (knob.dataset.dragged) {
+      delete knob.dataset.dragged // ce clic termine un glisser, pas un clic
+      return
+    }
+    onClick()
+  })
+}
+makeDial(nextKnob, next)
+makeDial(prevKnob, prev)
 document.querySelectorAll('[data-channel-key]').forEach((key) => {
   key.addEventListener('click', () => zapTo(Number(key.dataset.channelKey)))
 })

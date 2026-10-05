@@ -214,6 +214,9 @@ body { background: var(--room); overflow: hidden; }
 .hit:focus-visible { outline: 2px solid #ffde59; outline-offset: 3px; }
 
 .hit--knob { --rot: 0deg; border-radius: 50%; transform: rotate(var(--rot)); }
+/* Molettes : on les tourne en glissant (crans de 30°), elles suivent le pointeur sans transition */
+.hit[data-turn] { cursor: grab; touch-action: none; }
+.hit[data-turn].is-dragging { cursor: grabbing; transition: filter .2s; }
 .hit--push { border-radius: 4px; }
 .hit--push:active { transform: translateY(2px); filter: brightness(.85); }
 .hit--knob:active { filter: brightness(.9); }
