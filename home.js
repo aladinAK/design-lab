@@ -20,15 +20,16 @@ addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'g' && !e.metaKey && !e.ctrlKey && !e.altKey) toggleGrid()
 })
 
-// Copier la commande de création
-const cmd = document.querySelector('[data-copy]')
-const copied = document.querySelector('[data-copied]')
-cmd.addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(cmd.dataset.copy)
-    copied.textContent = 'copié'
-  } catch {
-    copied.textContent = 'copie impossible'
-  }
-  setTimeout(() => { copied.textContent = '' }, 1400)
+// Copier les commandes (chaque bouton a son propre retour « copié »)
+document.querySelectorAll('button[data-copy]').forEach((cmd) => {
+  const copied = cmd.querySelector('[data-copied]')
+  cmd.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(cmd.dataset.copy)
+      copied.textContent = 'copié'
+    } catch {
+      copied.textContent = 'copie impossible'
+    }
+    setTimeout(() => { copied.textContent = '' }, 1400)
+  })
 })
