@@ -25,8 +25,9 @@ Le labo est ouvert : n'importe qui peut y poser une expérimentation visuelle. U
    - `status` : `en cours`, `terminé`… ce que tu veux.
    - `date` : remplie par `pnpm new`, elle fixe l'ordre dans la liste.
 
-5. Lance `pnpm dev` et expérimente. Ta page apparaît toute seule sur l'accueil : pas besoin de toucher à `index.html`.
-6. Vérifie que `pnpm build` passe, puis ouvre une pull request.
+5. Facultatif : ajoute `experiments/mon-idee/preview.jpg` (capture de ta page, 960 × 600, moins de 150 Ko). Elle s'affiche au survol de ta ligne sur l'accueil.
+6. Lance `pnpm dev` et expérimente. Ta page apparaît toute seule sur l'accueil : pas besoin de toucher à `index.html`.
+7. Vérifie que `pnpm build` passe, puis ouvre une pull request.
 
 ## Règles du jeu
 

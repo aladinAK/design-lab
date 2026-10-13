@@ -16,7 +16,7 @@
     <div class="meta">
       <span class="hide-sm">labo ouvert · v0.2</span>
       <span data-clock>--:--:--</span>
-      <a class="toggle" href="https://github.com/aladinAK/design-lab" target="_blank" rel="noopener">github ↗</a>
+      <a class="toggle" href="https://github.com/aladinAK/design-lab" target="_blank" rel="noopener">github <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" /></svg></a>
       <button class="toggle" data-grid aria-pressed="false">grille <kbd>G</kbd></button>
     </div>
   </header>
@@ -49,23 +49,23 @@
       <h2 id="contribute-title">Pose ton <em>expérimentation</em>.</h2>
       <p class="lede">Une idée visuelle, une page, un dossier. Pas besoin qu’elle soit finie : c’est le principe.</p>
       <ol class="steps">
-        <li>
-          <span class="step-num">01</span>
+        <li class="step">
+          <span class="num">01</span>
           <p>Forke le dépôt sur GitHub, puis clone ton fork.</p>
-          <a class="cmd" href="https://github.com/aladinAK/design-lab/fork" target="_blank" rel="noopener"><span class="prompt">↗</span> forker le dépôt</a>
+          <a class="cmd" href="https://github.com/aladinAK/design-lab/fork" target="_blank" rel="noopener">forker le dépôt <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" /></svg></a>
         </li>
-        <li>
-          <span class="step-num">02</span>
+        <li class="step">
+          <span class="num">02</span>
           <p>Installe les dépendances (Node 20.11+ et pnpm).</p>
           <button class="cmd" data-copy="pnpm install"><span class="prompt">$</span> pnpm install <span class="copied" data-copied aria-live="polite"></span></button>
         </li>
-        <li>
-          <span class="step-num">03</span>
+        <li class="step">
+          <span class="num">03</span>
           <p>Crée ton dossier, puis remplis son <code>meta.json</code> : ta page apparaît ici toute seule.</p>
           <button class="cmd" data-copy="pnpm new "><span class="prompt">$</span> pnpm new &lt;nom&gt; <span class="copied" data-copied aria-live="polite"></span></button>
         </li>
-        <li>
-          <span class="step-num">04</span>
+        <li class="step">
+          <span class="num">04</span>
           <p>Expérimente en local, puis ouvre une pull request.</p>
           <button class="cmd" data-copy="pnpm dev"><span class="prompt">$</span> pnpm dev <span class="copied" data-copied aria-live="polite"></span></button>
         </li>
@@ -74,9 +74,14 @@
   </main>
 
   <footer class="foot">
-    <span>Règles du jeu : <a href="https://github.com/aladinAK/design-lab/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md ↗</a></span>
+    <span>Règles du jeu : <a href="https://github.com/aladinAK/design-lab/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" /></svg></a></span>
     <span class="coords hide-sm" data-coords>x 0000 · y 0000</span>
   </footer>
+
+  <!-- Aperçu qui suit le curseur au survol d'une ligne (souris uniquement) -->
+  <figure class="peek" aria-hidden="true">
+    <span class="crop crop--tl"></span><span class="crop crop--tr"></span><span class="crop crop--bl"></span><span class="crop crop--br"></span>
+  </figure>
 
   <div class="grid-overlay" aria-hidden="true"></div>
 

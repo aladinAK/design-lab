@@ -33,3 +33,48 @@ document.querySelectorAll('button[data-copy]').forEach((cmd) => {
     setTimeout(() => { copied.textContent = '' }, 1400)
   })
 })
+
+// Aperçu au survol : suit le curseur avec un léger retard, bascule à gauche près du bord droit
+const peek = document.querySelector('.peek')
+const peekImg = Object.assign(new Image(960, 600), { alt: '' }) // créée ici : pas d'<img> vide dans le HTML
+peek.prepend(peekImg)
+const previewRows = document.querySelectorAll('a.row[data-preview]')
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+if (finePointer && previewRows.length) {
+  previewRows.forEach((row) => { new Image().src = row.dataset.preview }) // préchargées : révélation immédiate
+
+  const target = { x: 0, y: 0 }
+  const pos = { x: 0, y: 0 }
+  let frame = null
+
+  const place = () => {
+    const ease = reduceMotion ? 1 : 0.2
+    pos.x += (target.x - pos.x) * ease
+    pos.y += (target.y - pos.y) * ease
+    peek.style.setProperty('--px', `${pos.x}px`)
+    peek.style.setProperty('--py', `${pos.y}px`)
+    frame = Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.5 ? requestAnimationFrame(place) : null
+  }
+
+  const aim = (e, snap = false) => {
+    const { width, height } = peek.getBoundingClientRect()
+    const gap = 28
+    target.x = e.clientX + gap + width > innerWidth - 16 ? e.clientX - gap - width : e.clientX + gap
+    target.y = Math.min(Math.max(e.clientY - height / 2, 16), innerHeight - height - 16)
+    if (snap) Object.assign(pos, target)
+    frame ??= requestAnimationFrame(place)
+  }
+
+  previewRows.forEach((row) => {
+    row.addEventListener('pointerenter', (e) => {
+      const appearing = !peek.classList.contains('is-on')
+      peekImg.src = row.dataset.preview
+      peek.classList.add('is-on')
+      aim(e, appearing) // à l'apparition, l'aperçu naît sous le curseur au lieu de glisser depuis l'ancien point
+    })
+    row.addEventListener('pointermove', (e) => aim(e))
+    row.addEventListener('pointerleave', () => peek.classList.remove('is-on'))
+  })
+}

@@ -42,7 +42,7 @@ Les étapes complètes et les règles sont dans [CONTRIBUTING.md](CONTRIBUTING.m
 index.html          page d'accueil du labo
 home.css, home.js   style et interactions de l'accueil
 shared/base.css     reset commun à toutes les pages
-experiments/        une expérimentation par dossier (index.html + meta.json)
+experiments/        une expérimentation par dossier (index.html, meta.json, preview.jpg facultatif)
 scripts/new.js      création d'une expérimentation depuis le template
 vite.config.js      une page par dossier, liste de l'accueil générée depuis les meta.json
 ```
