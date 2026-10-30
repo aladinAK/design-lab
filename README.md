@@ -10,8 +10,11 @@ La liste complète, à jour, est sur la page d'accueil du labo.
 |---|---|---|
 | [hand-drawn](experiments/hand-drawn/) | [@aladinAK](https://github.com/aladinAK) | Une page dessinée à la main : un croquis qui se trace au chargement, des box au trait de stylo, et un crayon pour dessiner partout sur la page. |
 | [old-tv](experiments/old-tv/) | [@aladinAK](https://github.com/aladinAK) | Une vieille télé cathodique. Elle s'allume à l'arrivée, on zappe avec ses vrais boutons, et chaque changement de chaîne passe par un effet VHS. |
+| [grimoire](experiments/grimoire/) | [@aladinAK](https://github.com/aladinAK) | Un grimoire en 3D (Three.js) posé sur une table de taverne à la lueur d'une bougie. On l'ouvre et on tourne ses pages pour lire le premier chapitre de *L’Épée de la Dernière Chance*. |
 
 Les chaînes de `old-tv` sont des vidéos YouTube intégrées. Elles appartiennent à leurs auteurs respectifs.
+
+Les textures de `grimoire` (cuir, bois, papier) viennent de [Poly Haven](https://polyhaven.com) et [ambientCG](https://ambientcg.com), sous licence CC0.
 
 ## Lancer le projet
 

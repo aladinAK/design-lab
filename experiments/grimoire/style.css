@@ -1,0 +1,107 @@
+:root {
+  --ink: #2b1b0e;
+  --rubric: #8c1d14;
+  --parch: #ecdcb4;
+  --night: #040201;
+  color-scheme: dark;
+}
+
+body { background: var(--night); overflow: hidden; }
+
+/* ---------- Scène ---------- */
+.stage { position: fixed; inset: 0; }
+.stage canvas {
+  display: block;
+  opacity: 0;
+  transition: opacity 1.6s ease-out;
+  touch-action: none;
+}
+.is-ready .stage canvas { opacity: 1; }
+
+.hint {
+  position: fixed; left: 50%; bottom: 26px;
+  translate: -50% 0;
+  margin: 0;
+  font: italic 19px/1 'IM Fell English', serif;
+  letter-spacing: .02em;
+  color: rgb(240 220 180 / .72);
+  text-shadow: 0 1px 8px rgb(0 0 0 / .9);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.back { z-index: 10; }
+
+/* ---------- Atelier : pages HTML composées hors écran, puis recopiées sur les textures ---------- */
+.workshop {
+  position: fixed; left: -10000px; top: 0;
+  pointer-events: none;
+}
+.page {
+  position: relative;
+  width: 440px; height: 620px;
+  color: var(--ink);
+  font: 17px/1.43 'IM Fell English', serif;
+  font-feature-settings: 'liga', 'onum';
+}
+.running {
+  position: absolute; top: 28px; left: 0; right: 0;
+  text-align: center;
+  font: 12px/1 'IM Fell English SC', serif;
+  letter-spacing: .24em;
+  color: var(--rubric);
+}
+.folio {
+  position: absolute; bottom: 26px; left: 0; right: 0;
+  text-align: center;
+  font: 14px/1 'IM Fell English', serif;
+  color: rgb(43 27 14 / .7);
+}
+.page-body {
+  position: absolute; top: 60px; bottom: 62px;
+  overflow: hidden;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.page--right .page-body { left: 58px; right: 48px; }
+.page--left .page-body { left: 48px; right: 58px; }
+.page-body p { margin: 0; text-indent: 1.5em; }
+.page-body p.cont, .page-body p.first, .page-body .break + p { text-indent: 0; }
+
+.chapter-head { margin: 18px 0 30px; text-align: center; }
+.chapter-num { margin: 0; font: 50px/1 'UnifrakturMaguntia', serif; color: var(--ink); }
+.chapter-rule { display: block; width: 150px; height: 14px; margin: 14px auto 12px; color: var(--rubric); }
+.chapter-title { margin: 0; font: italic 24px/1.1 'IM Fell English', serif; letter-spacing: .02em; }
+.lettrine {
+  float: left;
+  margin: 5px 10px 0 0;
+  padding: 8px 11px 2px;
+  font: 68px/.82 'UnifrakturMaguntia', serif;
+  color: var(--rubric);
+}
+.break { display: block; width: 60px; height: 10px; margin: 16px auto; color: var(--rubric); }
+.fin { display: block; width: 80px; height: 28px; margin: 22px auto 0; color: var(--rubric); }
+.page-body p.to-follow { margin-top: 14px; text-align: center; text-indent: 0; }
+.to-follow a { font: italic 22px/1.2 'IM Fell English', serif; color: var(--rubric); text-decoration: none; }
+
+/* ---------- Texte source : lecteurs d'écran ; page de lecture si WebGL manque ---------- */
+.source {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  color: var(--parch);
+}
+.no-webgl { overflow: auto; }
+.no-webgl .stage, .no-webgl .hint { display: none; }
+.no-webgl .source {
+  position: static; width: auto; height: auto;
+  max-width: 34em; margin: 48px auto; padding: 56px 48px;
+  overflow: visible; clip-path: none; white-space: normal;
+  color: var(--ink);
+  background: var(--parch);
+  font: 19px/1.55 'IM Fell English', serif;
+  text-align: justify; hyphens: auto;
+}
+.no-webgl .source h1 { font: 44px/1.1 'UnifrakturMaguntia', serif; text-align: center; margin: 0 0 8px; }
+.no-webgl .source h2 { font: italic 24px/1.2 'IM Fell English', serif; text-align: center; margin: 0 0 32px; color: var(--rubric); }
+.no-webgl .source p { margin: 0; text-indent: 1.5em; }
+.no-webgl .source a { color: var(--rubric); }
